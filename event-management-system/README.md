@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Gather — Event Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A responsive React event discovery and registration web application built for Web Programming Assignment 2. Powered by React, React Router, Redux Toolkit, and the Ticketmaster Discovery API.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+##  Key Features
 
-### `npm start`
+* **Authentication System**: Register, log in, and log out with simulated client-side authentication.
+* **Local Storage Persistence**: Maintains user accounts (`gather_accounts`), active user session (`gather_user`), and personal event registrations (`gather_registrations`).
+* **Event Discovery & Filtering**: Fetch live Ticketmaster events, search by keyword or city, and filter by category (Music, Sports, Arts & Theatre, Film, etc.).
+* **Event Details**: Comprehensive event details including date, time, venue, location, full descriptions, and links to official Ticketmaster pages.
+* **Event Registration**: Register for events with built-in duplicate prevention, view a personal event lineup, and cancel upcoming registrations.
+* **Protected Routes**: Restricts access to user-specific routes (like `/my-events`) for unauthenticated users.
+* **Responsive UI & States**: Clean component structure, custom skeleton loading states, error handling, and empty state fallbacks.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##  Project Architecture
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```text
+src/
+├── api/
+│   └── ticketmaster.js           # API service for fetching & normalizing Ticketmaster data
+├── components/
+│   ├── EventCard.jsx             # Reusable event card component
+│   ├── Footer.jsx                # Site footer component
+│   ├── Navbar.jsx                # Responsive header with session state
+│   └── ProtectedRoute.jsx        # Navigation guard for private routes
+├── features/
+│   ├── auth/
+│   │   └── authSlice.js          # Redux slice for user session management
+│   ├── events/
+│   │   └── eventsSlice.js        # Redux slice for event search and details state
+│   └── registrations/
+│       └── registrationsSlice.js # Redux slice for user registrations
+└── pages/
+    ├── Auth.jsx                  # Combined login and registration page
+    ├── EventDetails.jsx          # Detailed single event page with registration action
+    ├── Events.jsx                # Main search & filter discovery page
+    ├── Home.jsx                  # Hero page with featured events
+    └── MyEvents.jsx              # Personal registration lineup & filter tabs
